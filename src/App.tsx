@@ -38,7 +38,7 @@ function Home() {
   return (
     <>
       <h1>Home</h1>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
+      <pre>{JSON.stringify({ user }, null, 2)}</pre>
     </>
   )
 }
