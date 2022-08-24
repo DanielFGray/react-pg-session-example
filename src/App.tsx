@@ -62,7 +62,7 @@ export default function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/register" element={<Register />} />
         <Route path="/logout" element={<Logout />} />
-        <Route element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
   )
