@@ -1,0 +1,24 @@
+{
+  "db": {
+    "connectionString": "{{DATABASE_URL}}"
+  },
+  "outDir": ".",
+  "columnOptions": {
+    "*": {
+      "createdAt": {
+        "insert": "excluded",
+        "update": "excluded"
+      },
+      "updatedAt": {
+        "insert": "excluded",
+        "update": "excluded"
+      }
+    }
+  },
+  "schemas": {
+    "public": {
+      "include": "*",
+      "exclude": ["schema_migrations"]
+    }
+  }
+}

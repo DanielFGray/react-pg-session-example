@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:alpine
+    command:
+      postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all
+    environment:
+      - POSTGRES_USER=${ROOT_DATABASE_USER}
+      - POSTGRES_PASSWORD=${ROOT_DATABASE_PASSWORD}
+    volumes:
+      - /var/run/postgresql:/var/run/postgresql
+    #   - ./pgscripts:/docker-entrypoint-initdb.d
+    #   - ./data:/var/lib/postgresql/data
+    networks:
+      - appnet
+    ports:
+      - 5432:5432
+
+  migrations:
+    image: amacneil/dbmate
+    command: --wait-timeout=5s --wait up
+    volumes:
+      - ./migrations:/db/migrations
+    networks:
+      - appnet
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://${DATABASE_OWNER}:${DATABASE_OWNER_PASSWORD}@db:5432/testapp?sslmode=disable
+
+networks:
+  appnet:
