@@ -24,6 +24,6 @@ yarn start
 
 ## Roadmap
 
-- [  ] settings page
-- [  ] client-side protected routes
-- [  ] server-side rendering?
+- [ ] settings page
+- [ ] client-side protected routes
+- [ ] server-side rendering?
