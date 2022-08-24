@@ -21,26 +21,34 @@ export default function Login() {
           })
       }}
     >
-      <div>
-        <label>
-          username:
-          <input type="text" name="username" />
-        </label>
-        {response?.fieldError?.username && <div>{response?.fieldError?.username}</div>}
-      </div>
+      <fieldset>
+        <legend>log in</legend>
 
-      <div>
-        <label>
-          password:
-          <input type="password" name="password" />
-        </label>
-        {response?.fieldError?.password && <div>{response?.fieldError?.password}</div>}
-      </div>
+        <div>
+          <label htmlFor="login-username-input">username:</label>
+          <input
+            type="text"
+            name="username"
+            id="login-username-input"
+          />
+          {response?.fieldError?.username && (
+            <div className="field-error">{response?.fieldError?.username}</div>
+          )}
+        </div>
 
-      <div>
-        {response?.formError && <div>{response?.formError}</div>}
-        <button type="submit">login</button>
-      </div>
+        <div>
+          <label htmlFor="login-password-input">password:</label>
+          <input type="password" name="password" id="login-password-input" />
+          {response?.fieldError?.password && (
+            <div className="field-error">{response?.fieldError?.password}</div>
+          )}
+        </div>
+
+        <div>
+          {response?.formError && <div className="field-error">{response?.formError}</div>}
+          <button type="submit">login</button>
+        </div>
+      </fieldset>
     </form>
   )
 }

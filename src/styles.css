@@ -1,3 +1,6 @@
+body {
+  font-family: system-ui, sans;
+}
 ul {
   list-style-type: none;
   padding: 0;
@@ -28,4 +31,20 @@ ul {
 
 .gap-4 {
   gap: 1rem;
+}
+
+fieldset > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 32em;
+}
+
+form input {
+  width: 100%;
+  grid-column: span 2 / span 2;
+}
+
+form .field-error {
+  font-weight: 600;
+  color: red;
 }
