@@ -102,17 +102,21 @@ app.get('/currentUser', isAuthenticated, (req, res) => {
 
 app.post('/settings', isAuthenticated, async (req, res) => {
   const { username } = req.body
-  const [user] = await db
-    .update(
-      'users',
-      { username },
-      { user_id: req.session.user!.user_id },
-      { returning: ['user_id', 'username'] },
-    )
-    .run(pool)
-  console.log('updated user:', user)
-  req.session.user = user
-  res.json(req.session.user)
+  try {
+    const [user] = await db
+      .update(
+        'users',
+        { username },
+        { user_id: req.session.user!.user_id },
+        { returning: ['user_id', 'username'] },
+      )
+      .run(pool)
+    console.log('updated user:', user)
+    req.session.user = user
+    res.json(req.session.user)
+  } catch(e) {
+    res.status(500).json({ formError: 'there was an error processing your request' })
+  }
 })
 
 app.post('/logout', (req, res, next) => {

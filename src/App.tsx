@@ -1,4 +1,4 @@
-import { Routes, Route, Link, useLocation } from 'react-router-dom'
+import { Routes, Route, Link, useLocation, Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from './Auth.ctx'
 import Login from './login'
 import Logout from './logout'
@@ -53,14 +53,35 @@ function NotFound() {
   )
 }
 
+function ProtectedRoute({
+  isAllowed,
+  redirectPath = '/landing',
+  children,
+}: {
+  isAllowed?: boolean
+  redirectPath: string
+  children?: React.ReactElement
+}): JSX.Element {
+  if (!isAllowed) return <Navigate to={redirectPath} replace />
+  return children ? children : <Outlet />
+}
+
 export default function App() {
+  const { user } = useAuth()
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/settings" element={<Settings />} />
         <Route path="/register" element={<Register />} />
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute isAllowed={Boolean(user)} redirectPath="/login?redirectTo=/settings">
+              <Settings />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
