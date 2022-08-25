@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useAuth } from './Auth.ctx'
 
 export default function Login() {
   const [response, setResponse] = useState<any>()
   const auth = useAuth()
   const navigate = useNavigate()
+  const [params] = useSearchParams()
   return (
     <form
       method="POST"
@@ -17,13 +18,13 @@ export default function Login() {
           .then(res => {
             if (!res.user_id) return setResponse(res)
             auth.setUser(res)
-            navigate('/')
+            navigate(params.get('redirectTo') || '/')
           })
       }}
     >
       <fieldset>
         <legend>log in</legend>
-
+        {params.get('redirectTo') && <div className="field-error">you must be logged in to do that!</div>}
         <div>
           <label htmlFor="login-username-input">username:</label>
           <input
