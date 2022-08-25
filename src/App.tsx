@@ -17,13 +17,21 @@ function Layout({ children }: { children: React.ReactNode }) {
           {user ? (
             <>
               <li>hi {user.username}!</li>
-              <li><Link to="/settings">settings</Link></li>
-              <li><Link to="/logout">log out</Link></li>
+              <li>
+                <Link to="/settings">settings</Link>
+              </li>
+              <li>
+                <Link to="/logout">log out</Link>
+              </li>
             </>
           ) : (
             <>
-              <li><Link to="/login">login</Link></li>
-              <li><Link to="/register">register</Link></li>
+              <li>
+                <Link to="/login">login</Link>
+              </li>
+              <li>
+                <Link to="/register">register</Link>
+              </li>
             </>
           )}
         </ul>

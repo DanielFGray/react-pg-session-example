@@ -16,10 +16,14 @@ export default function Logout() {
           })
       }}
     >
-      <div>Are you sure you want to log out?</div>
-      <div>
-        <input type="submit" value="log out" />
-      </div>
+      <fieldset>
+        <legend>log out</legend>
+
+        <div>Are you sure you want to log out?</div>
+        <div>
+          <input type="submit" value="log out" />
+        </div>
+      </fieldset>
     </form>
   )
 }

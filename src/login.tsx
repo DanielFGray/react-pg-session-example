@@ -27,11 +27,7 @@ export default function Login() {
         {params.get('redirectTo') && <div className="field-error">you must be logged in to do that!</div>}
         <div>
           <label htmlFor="login-username-input">username:</label>
-          <input
-            type="text"
-            name="username"
-            id="login-username-input"
-          />
+          <input type="text" name="username" id="login-username-input" />
           {response?.fieldError?.username && (
             <div className="field-error">{response?.fieldError?.username}</div>
           )}
