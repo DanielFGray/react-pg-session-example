@@ -95,13 +95,14 @@ app.post('/login', (req, res) => {
   })
 })
 
-app.get('/currentUser', isAuthenticated, (req, res) => {
-  // if (!req.session.user) return res.status(403).json(null)
+app.get('/currentUser', (req, res) => {
+  if (!req.session.user) return res.status(403).json(null)
   res.json(req.session.user)
 })
 
 app.post('/settings', isAuthenticated, async (req, res) => {
   const { username } = req.body
+  if (!username) return res.status(400).json({ fieldError: { username: 'username cannot be empty' } })
   try {
     const [user] = await db
       .update(
