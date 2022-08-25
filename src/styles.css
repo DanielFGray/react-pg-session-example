@@ -1,6 +1,19 @@
+@import-normalize;
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   font-family: system-ui, sans;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -33,13 +46,19 @@ ul {
   gap: 1rem;
 }
 
-fieldset > div {
+fieldset {
+  margin: 0 auto;
+  max-width: 36em;
+  padding: 1em;
+}
+
+.form-row {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   max-width: 32em;
 }
 
-form input {
+.form-row input {
   width: 100%;
   grid-column: span 2 / span 2;
 }
@@ -47,4 +66,10 @@ form input {
 form .field-error {
   font-weight: 600;
   color: red;
+  grid-column: span 3 / span 3;
+}
+
+form button {
+  grid-column: span 3 / span 3;
+  margin: 0 auto;
 }
