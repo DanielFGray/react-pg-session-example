@@ -1,6 +1,6 @@
 # react-pg-session-example
 
-This is a small example of using express, express-session and create-react-app together and storing session data in Postgres.
+This is a small example of using create-react-app, express, and express-session together and storing session data in Postgres.
 
 ## Requirements
 
